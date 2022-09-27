@@ -16,26 +16,34 @@ const UplaodingDocView = () => {
   };
   const [activeStep, setActiveStep] = useState(0);
   const steps = [
-    { title: "DocumentTypes", componenet: <DocumentTypes/> ,  onClick: (e) => {
-         
-        setActiveStep(0)
-      }
-     },
-    { title: "DataPoints", componenet: <DataPoints/>,
-    onClick: (e) => {
-         
-        setActiveStep(1)
-      } },
-    { title: "UploadDocument", componenet: <UploadDocument/>,
-    onClick: (e) => {
-         
-        setActiveStep(2)
-      } },
-    { title: "CheckResults", componenet: <CheckResults/>,
-    onClick: (e) => {
-         
-        setActiveStep(3)
-      } },
+    {
+      title: "Document Types",
+      componenet: <DocumentTypes />,
+      onClick: (e) => {
+        setActiveStep(0);
+      },
+    },
+    {
+      title: "Data Points",
+      componenet: <DataPoints />,
+      onClick: (e) => {
+        setActiveStep(1);
+      },
+    },
+    {
+      title: "Upload Document",
+      componenet: <UploadDocument />,
+      onClick: (e) => {
+        setActiveStep(2);
+      },
+    },
+    {
+      title: "Check Results",
+      componenet: <CheckResults />,
+      onClick: (e) => {
+        setActiveStep(3);
+      },
+    },
   ];
   const onClickNext = () => {
     if (activeStep > 2) {
@@ -51,9 +59,9 @@ const UplaodingDocView = () => {
         <Stepper
           steps={steps}
           activeStep={activeStep}
-          size={50}
-          completeBarColor={'#5096FF'}
-          defaultBorderWidth ={20}
+          size={30}
+          completeBarColor={"#5096FF"}
+          defaultBorderWidth={20}
         />
         {steps[activeStep].componenet}
         <button style={buttonStyle} onClick={() => onClickNext()}>
