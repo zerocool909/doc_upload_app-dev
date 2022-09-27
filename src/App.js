@@ -1,24 +1,16 @@
 import logo from './logo.svg';
 import '../src/styles/App.css';
+import Steps, { Step } from "rc-steps";
+import "rc-steps/assets/index.css";
+// import "rc-steps/assets/iconfont.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Steps current={1}>
+  <Steps.Step title="first" />
+  <Steps.Step title="second" />
+  <Steps.Step title="third" />
+</Steps>
   );
 }
 
