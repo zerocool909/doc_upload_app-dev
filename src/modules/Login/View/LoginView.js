@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 
-const LoginView = () => {
+const LoginView = ({ setIsLoggedIn }) => {
   return (
     <div className="row">
       <div className="heading-section">
@@ -22,7 +22,12 @@ const LoginView = () => {
             <input type="password" className="form-control" />
           </div>
           <div className="button-section">
-            <button className="btn btn-primary btn-login">Login</button>
+            <button
+              className="btn btn-primary btn-login"
+              onClick={() => setIsLoggedIn(true)}
+            >
+              Login
+            </button>
           </div>
         </div>
       </div>
@@ -32,19 +37,19 @@ const LoginView = () => {
           <ul>
             <li>
               <em>
-                <i class="fa fa-money" aria-hidden="true"></i>
+                <i className="fa fa-money" aria-hidden="true"></i>
               </em>
               <small>Earn points for shopping and prescriptions</small>
             </li>
             <li>
               <em>
-                <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+                <i className="fa fa-credit-card-alt" aria-hidden="true"></i>
               </em>
               <small>Redeem points for BonusCash</small>
             </li>
             <li>
               <em>
-                <i class="fa fa-usd" aria-hidden="true"></i>
+                <i className="fa fa-usd" aria-hidden="true"></i>
               </em>
               <small>
                 Save more with exclusive digital coupons, personalized offers,
@@ -53,13 +58,13 @@ const LoginView = () => {
             </li>
             <li>
               <em>
-                <i class="fa fa-hospital-o" aria-hidden="true"></i>
+                <i className="fa fa-hospital-o" aria-hidden="true"></i>
               </em>
               <small> Manage your prescriptions</small>
             </li>
             <li>
               <em>
-                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                <i className="fa fa-shopping-cart" aria-hidden="true"></i>
               </em>
               <small>Faster checkout</small>
             </li>
