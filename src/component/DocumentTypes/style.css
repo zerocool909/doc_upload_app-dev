@@ -1,0 +1,26 @@
+.box-shadow {
+  /* font-family: cursive, sans-serif; */
+  background-color: white;
+  
+  padding: 100px;
+  border-radius: 4px;
+  box-shadow: 0px 0px 0px 0px #73be44;
+  border-style: solid;
+  border-color: #73be44;
+  border-width: 10;
+  flex: auto;
+  /* max-width: 900px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 100px;
+  flex-direction: column;
+
+  /* height: 100vh; */
+}
+
+.label-style {
+    font-family: cursive, sans-serif;
+    color: #a81d21;
+
+}
