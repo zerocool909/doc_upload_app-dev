@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./style.css";
 
-const DataPoints = () => {
+const DataPoints = ({ selectedInfo, setSelectedInfo }) => {
   const [allDataCheck, setAllDataCheck] = useState(false);
   const [option1Check, setOption1Check] = useState(false);
   const [option2Check, setOption2Check] = useState(false);
@@ -38,13 +38,13 @@ const DataPoints = () => {
 
   return (
     <div class="box-shadow">
-      <label class="label-style" for="radio1">
+      <label class="label-style" className="radio1">
         What data types do you need?
       </label>
       <div>
-        <div class="form-check">
+        <div class="classNamem-check">
           <input
-            class="form-check-input"
+            class="classNamem-check-input"
             type="checkbox"
             id="check1"
             name="option1"
@@ -52,11 +52,11 @@ const DataPoints = () => {
             onChange={handleChange}
             checked={allDataCheck}
           />
-          <label class="form-check-label">All data points</label>
+          <label class="classNamem-check-label">All data points</label>
         </div>
-        <div class="form-check">
+        <div class="classNamem-check">
           <input
-            class="form-check-input"
+            class="classNamem-check-input"
             type="checkbox"
             id="check2"
             name="option2"
@@ -64,11 +64,11 @@ const DataPoints = () => {
             onChange={handleChange}
             checked={option1Check}
           />
-          <label class="form-check-label">Partial Option 1</label>
+          <label class="classNamem-check-label">Partial Option 1</label>
         </div>
-        <div class="form-check">
+        <div class="classNamem-check">
           <input
-            class="form-check-input"
+            class="classNamem-check-input"
             type="checkbox"
             id="check3"
             name="option2"
@@ -76,7 +76,7 @@ const DataPoints = () => {
             onChange={handleChange}
             checked={option2Check}
           />
-          <label class="form-check-label">Partial Option 2</label>
+          <label class="classNamem-check-label">Partial Option 2</label>
         </div>
       </div>
     </div>
