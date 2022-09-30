@@ -5,7 +5,6 @@ import UplaodingDocContainer from "./modules/UploadingDoc/Container/UplaodingDoc
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  console.log(isLoggedIn);
   return isLoggedIn ? (
     <UplaodingDocContainer
       setIsLoggedIn={setIsLoggedIn}
