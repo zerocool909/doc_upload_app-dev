@@ -56,6 +56,12 @@
     border-radius: 25px;
     height: 45px;
     margin-top: 25px;
+    background: #73bf45;
+    border: none;
+}
+.button-section .btn-login:focus {
+    background: #73bf45 !important;
+    border: none;
 }
 .signup-link-section a {
     text-decoration: none;
@@ -64,5 +70,10 @@
     font-weight: 500;
     font-size: 22px;
         letter-spacing: 1px;
+}
+.login-container-right img {
+    width: 400px;
+    height: auto;
+    object-fit: cover;
 }
 
