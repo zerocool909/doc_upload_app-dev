@@ -2,8 +2,7 @@ import "../../../../src/styles/App.css";
 import Stepper from "react-stepper-horizontal/lib/Stepper";
 
 const UplaodingDocView = (props) => {
-  const {steps, activeStep, onClickNext} = props
-  
+  const { steps, activeStep, onClickNext } = props;
 
   return (
     <div className="App">

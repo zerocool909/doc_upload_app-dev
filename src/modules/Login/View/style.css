@@ -72,7 +72,7 @@
         letter-spacing: 1px;
 }
 .login-container-right img {
-    width: 400px;
+    width: 100%;
     height: auto;
     object-fit: cover;
 }
