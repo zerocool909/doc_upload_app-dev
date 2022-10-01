@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 import "./style.css";
 const DocumentTypes = ({ selectedInfo, setSelectedInfo }) => {
   const handleChange = (optionValue) => {

@@ -6,18 +6,26 @@ const DataPoints = ({ selectedInfo, setSelectedInfo }) => {
   const [option1Check, setOption1Check] = useState(false);
   const [option2Check, setOption2Check] = useState(false);
 
-  // useEffect(() => {
-  //   if(option1Check && option2Check)
-  //   setAllDataCheck(true)
-  // }, [option1Check])
+  useEffect(() => {
+    const strSelectedValue = { ...selectedInfo };
+
+    if (allDataCheck) {
+      strSelectedValue.data_points = "allData";
+    } else if (option1Check && !option2Check) {
+      strSelectedValue.data_points = "option1";
+    } else if (!option1Check && option2Check) {
+      strSelectedValue.data_points = "option2";
+    }
+    setSelectedInfo(strSelectedValue);
+  }, [option1Check, option2Check, allDataCheck]);
 
   const handleChange = (e) => {
     const { value, checked } = e.target;
-    if (value == "all") {
+    if (value === "all") {
       setAllDataCheck(checked);
       setOption1Check(checked);
       setOption2Check(checked);
-    } else if (value == "op1") {
+    } else if (value === "op1") {
       setOption1Check(checked);
       if (!checked) {
         setAllDataCheck(checked);
@@ -25,7 +33,7 @@ const DataPoints = ({ selectedInfo, setSelectedInfo }) => {
         setAllDataCheck(true);
         console.log("all", true);
       }
-    } else if (value == "op2") {
+    } else if (value === "op2") {
       setOption2Check(checked);
       if (!checked) {
         setAllDataCheck(checked);
@@ -37,14 +45,12 @@ const DataPoints = ({ selectedInfo, setSelectedInfo }) => {
   };
 
   return (
-    <div class="box-shadow">
-      <label class="label-style" className="radio1">
-        What data types do you need?
-      </label>
+    <div className="box-shadow">
+      <label className="label-style">What data types do you need?</label>
       <div>
-        <div class="classNamem-check">
+        <div className="classNamem-check">
           <input
-            class="classNamem-check-input"
+            className="classNamem-check-input"
             type="checkbox"
             id="check1"
             name="option1"
@@ -52,11 +58,13 @@ const DataPoints = ({ selectedInfo, setSelectedInfo }) => {
             onChange={handleChange}
             checked={allDataCheck}
           />
-          <label class="classNamem-check-label">All data points</label>
+          <label className="classNamem-check-label" htmlFor={'check1'}>
+            All data points
+          </label>
         </div>
-        <div class="classNamem-check">
+        <div className="classNamem-check">
           <input
-            class="classNamem-check-input"
+            className="classNamem-check-input"
             type="checkbox"
             id="check2"
             name="option2"
@@ -64,11 +72,13 @@ const DataPoints = ({ selectedInfo, setSelectedInfo }) => {
             onChange={handleChange}
             checked={option1Check}
           />
-          <label class="classNamem-check-label">Partial Option 1</label>
+          <label className="classNamem-check-label" htmlFor={'check2'}>
+            Partial Option 1
+          </label>
         </div>
-        <div class="classNamem-check">
+        <div className="classNamem-check">
           <input
-            class="classNamem-check-input"
+            className="classNamem-check-input"
             type="checkbox"
             id="check3"
             name="option2"
@@ -76,7 +86,9 @@ const DataPoints = ({ selectedInfo, setSelectedInfo }) => {
             onChange={handleChange}
             checked={option2Check}
           />
-          <label class="classNamem-check-label">Partial Option 2</label>
+          <label className="classNamem-check-label" htmlFor={'check3'}>
+            Partial Option 2
+          </label>
         </div>
       </div>
     </div>
