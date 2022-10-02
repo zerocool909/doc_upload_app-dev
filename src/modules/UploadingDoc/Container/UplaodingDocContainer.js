@@ -1,5 +1,5 @@
 import UplaodingDocView from "../View/UplaodingDocView";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import UploadDocument from "../../../component/UploadDocument";
 import CheckResults from "../../../component/CheckResults";
 import DataPoints from "../../../component/DataPoints";
@@ -10,7 +10,9 @@ const UplaodingDocContainer = ({ setIsLoggedIn }) => {
   const [selectedInfo, setSelectedInfo] = useState({
     document_types: "",
     data_points: "",
+    uploaded_file: [],
   });
+  const [errorMessage, setErrorMessage] = useState("");
   const [activeStep, setActiveStep] = useState(0);
   const steps = [
     {
@@ -43,6 +45,7 @@ const UplaodingDocContainer = ({ setIsLoggedIn }) => {
         <UploadDocument
           selectedInfo={selectedInfo}
           setSelectedInfo={setSelectedInfo}
+          setErrorMessage={setErrorMessage}
         />
       ),
       onClick: (e) => {
@@ -51,7 +54,7 @@ const UplaodingDocContainer = ({ setIsLoggedIn }) => {
     },
     {
       title: "Check Results",
-      componenet: <CheckResults />,
+      componenet: <CheckResults selectedInfo={selectedInfo} />,
       onClick: (e) => {
         setActiveStep(3);
       },
@@ -61,9 +64,29 @@ const UplaodingDocContainer = ({ setIsLoggedIn }) => {
     if (activeStep > 2) {
       setActiveStep(0);
     } else {
-      setActiveStep(activeStep + 1);
+      if (selectedInfo.document_types != "" && activeStep === 0) {
+        setActiveStep(activeStep + 1);
+        setErrorMessage("");
+      } else if (selectedInfo.data_points != "" && activeStep === 1) {
+        setActiveStep(activeStep + 1);
+        setErrorMessage("");
+      } else if (selectedInfo.uploaded_file.length && activeStep === 2) {
+        setActiveStep(activeStep + 1);
+        setErrorMessage("");
+      } else {
+        if (activeStep === 0) {
+          setErrorMessage("Please select any Document Type");
+        } else if (activeStep === 1) {
+          setErrorMessage("Please select any Data Points");
+        } else if (activeStep === 2) {
+          setErrorMessage("Please Upload atleast one File");
+        }
+      }
     }
   };
+  useEffect(() => {
+    setErrorMessage("");
+  }, [selectedInfo]);
   return (
     <>
       <Header setIsLoggedIn={setIsLoggedIn}></Header>
@@ -71,6 +94,7 @@ const UplaodingDocContainer = ({ setIsLoggedIn }) => {
         steps={steps}
         activeStep={activeStep}
         onClickNext={onClickNext}
+        errorMessage={errorMessage}
       ></UplaodingDocView>
     </>
   );

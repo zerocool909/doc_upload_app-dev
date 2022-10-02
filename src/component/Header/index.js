@@ -14,7 +14,7 @@ export default function index({ setIsLoggedIn }) {
       </div>
       <div className="logout-container">
         <label onClick={() => handleLogout()} title="Logout">
-          <i class="fa fa-sign-out" aria-hidden="true"></i>
+          <i className="fa fa-sign-out" aria-hidden="true"></i>
         </label>
       </div>
     </div>

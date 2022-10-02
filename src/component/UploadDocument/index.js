@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import "./style.css";
 
-const UploadDocument = ({ selectedInfo, setSelectedInfo }) => {
+const UploadDocument = ({ selectedInfo, setSelectedInfo, setErrorMessage }) => {
   const [uploadedFile, setUploadedFile] = useState([]);
 
   const onDrop = useCallback((acceptedFiles) => {
@@ -12,6 +12,9 @@ const UploadDocument = ({ selectedInfo, setSelectedInfo }) => {
         la_uploadedFiles.push(selectedFiles);
       }
       setUploadedFile(la_uploadedFiles);
+      selectedInfo.uploaded_file = la_uploadedFiles;
+      setSelectedInfo(selectedInfo);
+      setErrorMessage("");
     }
   }, []);
 
@@ -26,20 +29,6 @@ const UploadDocument = ({ selectedInfo, setSelectedInfo }) => {
       </li>
     );
   });
-
-  // const getuploadedFile = () => {
-  //   console.log("hi");
-  //   if (uploadedFile.length) {
-  //     const la_uploadFile = [...uploadedFile];
-  //     la_uploadFile.push(acceptedFiles);
-  //     setUploadedFile(la_uploadFile);
-  //     return la_uploadFile.map;
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   getuploadedFile();
-  // }, [acceptedFiles]);
 
   return (
     <div className="document-type-container">
