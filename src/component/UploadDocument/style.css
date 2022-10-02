@@ -4,10 +4,15 @@
     padding: 20px 30px;
     border-radius: 5px;
 }
-.body {
+.upload-document-container {
     text-align: center;
     padding: 20px;
-    border: 3px #73bf45 dashed;
-    width: 60%;
-    margin: auto;
-  }
+    border: 2px #73bf45 dashed;
+    background: #73bf452e;
+    margin-bottom: 10px;
+}
+.uploaded-container ul li {
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
