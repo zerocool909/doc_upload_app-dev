@@ -4,6 +4,7 @@ import UploadDocument from "../../../component/UploadDocument";
 import CheckResults from "../../../component/CheckResults";
 import DataPoints from "../../../component/DataPoints";
 import DocumentTypes from "../../../component/DocumentTypes";
+import Header from "../../../component/Header";
 
 const UplaodingDocContainer = () => {
   const [selectedInfo, setSelectedInfo] = useState({
@@ -64,11 +65,14 @@ const UplaodingDocContainer = () => {
     }
   };
   return (
-    <UplaodingDocView
-      steps={steps}
-      activeStep={activeStep}
-      onClickNext={onClickNext}
-    ></UplaodingDocView>
+    <>
+      <Header></Header>
+      <UplaodingDocView
+        steps={steps}
+        activeStep={activeStep}
+        onClickNext={onClickNext}
+      ></UplaodingDocView>
+    </>
   );
 };
 

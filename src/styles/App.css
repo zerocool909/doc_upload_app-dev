@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+.box-container{
+  width: 70%;
+    margin: 0 auto;
+}
+.btn-next{
+  width: 72px;
+  border-radius: 25px;
+  background: #73bf45 !important;
+  border: none !important;
+  height: 45px;
+}

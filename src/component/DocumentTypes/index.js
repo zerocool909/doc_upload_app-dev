@@ -1,4 +1,3 @@
-
 import "./style.css";
 const DocumentTypes = ({ selectedInfo, setSelectedInfo }) => {
   const handleChange = (optionValue) => {
@@ -7,10 +6,12 @@ const DocumentTypes = ({ selectedInfo, setSelectedInfo }) => {
     setSelectedInfo(strSelectedValue);
   };
   return (
-    <div className="box-shadow">
-      <label className="label-style">What kind of Document is this?</label>
-      <div>
-        <div className="form-check">
+    <div className="document-type-container">
+      <label className="document-type-container-title">
+        What kind of Document is this?
+      </label>
+      <div className="check-box-section">
+        <div className="form-check-container">
           <input
             type="radio"
             className="form-check-input"
@@ -23,7 +24,7 @@ const DocumentTypes = ({ selectedInfo, setSelectedInfo }) => {
             Rent Roll
           </label>
         </div>
-        <div className="form-check">
+        <div className="form-check-container">
           <input
             type="radio"
             className="form-check-input"
@@ -36,7 +37,7 @@ const DocumentTypes = ({ selectedInfo, setSelectedInfo }) => {
             Property Deed
           </label>
         </div>
-        <div className="form-check">
+        <div className="form-check-container">
           <input
             type="radio"
             className="form-check-input"
