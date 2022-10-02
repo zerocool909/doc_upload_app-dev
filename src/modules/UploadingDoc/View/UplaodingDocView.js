@@ -10,10 +10,11 @@ const UplaodingDocView = (props) => {
         steps={steps}
         activeStep={activeStep}
         activeColor={"#73bf45"}
-        size={30}
+        size={40}
+        circleTop={50}
+        circleFontSize={15}
         completeBarColor={"#73bf45"}
         completeColor={"#73bf45"}
-        defaultBorderWidth={20}
       />
       {steps[activeStep].componenet}
       <div className="error-section">
