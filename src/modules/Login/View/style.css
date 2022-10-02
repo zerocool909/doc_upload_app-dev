@@ -56,10 +56,10 @@
     border-radius: 25px;
     height: 45px;
     margin-top: 25px;
-    background: #73bf45;
+    background: #73bf45 ;
     border: none;
 }
-.button-section .btn-login:focus {
+.button-section .btn-login:hover {
     background: #73bf45 !important;
     border: none;
 }
@@ -75,5 +75,13 @@
     width: 100%;
     height: auto;
     object-fit: cover;
+}
+.button-section .btn-login:focus-visible {
+    background: #73bf45 !important;
+    border-color: 0 0 0 0.25rem rgb(115, 190, 69 / 25%) !important;
+}
+.button-section .btn-login:focus {
+    background: #73bf45 !important;
+    border-color: 0 0 0 0.25rem rgb(115, 190, 69 / 25%) !important;
 }
 

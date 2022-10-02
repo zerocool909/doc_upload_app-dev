@@ -4,7 +4,9 @@ import LoginContainer from "./modules/Login/Container/LoginContainer";
 import UplaodingDocContainer from "./modules/UploadingDoc/Container/UplaodingDocContainer";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    localStorage.getItem("isLogin") == "Yes" ? true : false
+  );
   return isLoggedIn ? (
     <UplaodingDocContainer
       setIsLoggedIn={setIsLoggedIn}

@@ -6,7 +6,7 @@ import DataPoints from "../../../component/DataPoints";
 import DocumentTypes from "../../../component/DocumentTypes";
 import Header from "../../../component/Header";
 
-const UplaodingDocContainer = () => {
+const UplaodingDocContainer = ({ setIsLoggedIn }) => {
   const [selectedInfo, setSelectedInfo] = useState({
     document_types: "",
     data_points: "",
@@ -66,7 +66,7 @@ const UplaodingDocContainer = () => {
   };
   return (
     <>
-      <Header></Header>
+      <Header setIsLoggedIn={setIsLoggedIn}></Header>
       <UplaodingDocView
         steps={steps}
         activeStep={activeStep}

@@ -3,13 +3,17 @@ import "./style.css";
 import logo from "../../../images/boare_ai-logo_white.jpg";
 
 const LoginView = ({ setIsLoggedIn }) => {
+  const handleLogin = () => {
+    localStorage.setItem("isLogin", "Yes");
+    setIsLoggedIn(true);
+  };
   return (
     <div className="row">
       <div className="heading-section">
         <h1>Login to your account</h1>
-        <span className="signup-link-section">
+        {/* <span className="signup-link-section">
           Need an account <a href="#">Sign Up</a>
-        </span>
+        </span> */}
       </div>
       <div className="col-md-6">
         <div className="login-container-right">
@@ -54,7 +58,7 @@ const LoginView = ({ setIsLoggedIn }) => {
       </div>
       <div className="col-md-6 login-left-border">
         <div className="login-container-left">
-          <span>* indicates a required field</span>
+          <span>* Indicates a required field</span>
           <div>
             <label className="heading-common">Email Address *</label>
             <input type="text" className="form-control" />
@@ -66,7 +70,7 @@ const LoginView = ({ setIsLoggedIn }) => {
           <div className="button-section">
             <button
               className="btn btn-primary btn-login"
-              onClick={() => setIsLoggedIn(true)}
+              onClick={() => handleLogin()}
             >
               Login
             </button>
