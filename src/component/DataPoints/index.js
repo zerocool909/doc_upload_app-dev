@@ -45,12 +45,14 @@ const DataPoints = ({ selectedInfo, setSelectedInfo }) => {
   };
 
   return (
-    <div className="box-shadow">
-      <label className="label-style">What data types do you need?</label>
-      <div>
-        <div className="classNamem-check">
+    <div className="document-type-container">
+      <label className="document-type-container-title">
+        What data types do you need?
+      </label>
+      <div className="check-box-section">
+        <div className="form-check-container">
           <input
-            className="classNamem-check-input"
+            className="form-check-input"
             type="checkbox"
             id="check1"
             name="option1"
@@ -58,13 +60,13 @@ const DataPoints = ({ selectedInfo, setSelectedInfo }) => {
             onChange={handleChange}
             checked={allDataCheck}
           />
-          <label className="classNamem-check-label" htmlFor={'check1'}>
+          <label className="classNamem-check-label" htmlFor={"check1"}>
             All data points
           </label>
         </div>
-        <div className="classNamem-check">
+        <div className="form-check-container">
           <input
-            className="classNamem-check-input"
+            className="form-check-input"
             type="checkbox"
             id="check2"
             name="option2"
@@ -72,13 +74,13 @@ const DataPoints = ({ selectedInfo, setSelectedInfo }) => {
             onChange={handleChange}
             checked={option1Check}
           />
-          <label className="classNamem-check-label" htmlFor={'check2'}>
+          <label className="classNamem-check-label" htmlFor={"check2"}>
             Partial Option 1
           </label>
         </div>
-        <div className="classNamem-check">
+        <div className="form-check-container">
           <input
-            className="classNamem-check-input"
+            className="form-check-input"
             type="checkbox"
             id="check3"
             name="option2"
@@ -86,7 +88,7 @@ const DataPoints = ({ selectedInfo, setSelectedInfo }) => {
             onChange={handleChange}
             checked={option2Check}
           />
-          <label className="classNamem-check-label" htmlFor={'check3'}>
+          <label className="classNamem-check-label" htmlFor={"check3"}>
             Partial Option 2
           </label>
         </div>
