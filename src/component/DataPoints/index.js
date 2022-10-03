@@ -10,11 +10,11 @@ const DataPoints = ({ selectedInfo, setSelectedInfo }) => {
     const strSelectedValue = { ...selectedInfo };
 
     if (allDataCheck) {
-      strSelectedValue.data_points = "allData";
+      strSelectedValue.data_points = "All data points";
     } else if (option1Check && !option2Check) {
-      strSelectedValue.data_points = "option1";
+      strSelectedValue.data_points = "Partial Option 1";
     } else if (!option1Check && option2Check) {
-      strSelectedValue.data_points = "option2";
+      strSelectedValue.data_points = "Partial Option 2";
     }
     setSelectedInfo(strSelectedValue);
   }, [option1Check, option2Check, allDataCheck]);

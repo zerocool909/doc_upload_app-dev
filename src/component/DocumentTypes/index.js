@@ -18,7 +18,7 @@ const DocumentTypes = ({ selectedInfo, setSelectedInfo }) => {
             id="radio1"
             name="optradio"
             value="option1"
-            onChange={() => handleChange("option1")}
+            onChange={() => handleChange("Rent Roll")}
           />
           <label className="form-check-label" htmlFor="radio1">
             Rent Roll
@@ -31,7 +31,7 @@ const DocumentTypes = ({ selectedInfo, setSelectedInfo }) => {
             id="radio2"
             name="optradio"
             value="option2"
-            onChange={() => handleChange("option2")}
+            onChange={() => handleChange("Property Deed")}
           />
           <label className="form-check-label" htmlFor="radio2">
             Property Deed
@@ -44,7 +44,7 @@ const DocumentTypes = ({ selectedInfo, setSelectedInfo }) => {
             id="radio3"
             name="optradio"
             value="option3"
-            onChange={() => handleChange("option3")}
+            onChange={() => handleChange("Closing Disclosure")}
           />
           <label className="form-check-label" htmlFor="radio3">
             Closing Disclosure
