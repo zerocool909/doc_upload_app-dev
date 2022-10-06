@@ -17,7 +17,7 @@ const DocumentTypes = ({ selectedInfo, setSelectedInfo }) => {
             className="form-check-input"
             id="radio1"
             name="optradio"
-            value="option1"
+            value="Rent Roll"
             onChange={() => handleChange("Rent Roll")}
           />
           <label className="form-check-label" htmlFor="radio1">
@@ -30,7 +30,7 @@ const DocumentTypes = ({ selectedInfo, setSelectedInfo }) => {
             className="form-check-input"
             id="radio2"
             name="optradio"
-            value="option2"
+            value="Property Deed"
             onChange={() => handleChange("Property Deed")}
           />
           <label className="form-check-label" htmlFor="radio2">
@@ -43,7 +43,7 @@ const DocumentTypes = ({ selectedInfo, setSelectedInfo }) => {
             className="form-check-input"
             id="radio3"
             name="optradio"
-            value="option3"
+            value="Closing Disclosure"
             onChange={() => handleChange("Closing Disclosure")}
           />
           <label className="form-check-label" htmlFor="radio3">
