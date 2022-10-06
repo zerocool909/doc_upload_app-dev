@@ -16,54 +16,50 @@ const UploadDocument = ({ selectedInfo, setSelectedInfo, setErrorMessage }) => {
       selectedInfo.uploaded_file = la_uploadedFiles;
       setSelectedInfo(selectedInfo);
       setErrorMessage("");
-      console.log('acceptedFiles', acceptedFiles);
+      console.log("acceptedFiles", acceptedFiles);
     }
   }, []);
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
-      'image/*': [],
-      'application/pdf': ['.pdf'],
+      "image/*": [],
+      "application/pdf": [".pdf"],
     },
     onDrop,
   });
 
   const files = uploadedFile.map((file) => {
     return (
-      file.type === 'application/pdf' ? 
-      // <ul>
-      // <li key={file.path}>
-      //   {file.path} - {file.size} bytes
-      // </li>
-      // </ul>
-      
-      <ul>
-        <PDFPreview preview={file}/>
-       <li key={file.path}>
-      {file.path} - {file.size} bytes
-      </li>
-      </ul>
-      :
-      <div style={thumb} key={file.name}>
-      <div style={thumbInner}>
-        <img
-          src={URL.createObjectURL(file)}
-          style={img}
-          // Revoke data uri after image is loaded
-          onLoad={() => { URL.revokeObjectURL(URL.createObjectURL(file)) }}
-        />
-         <li key={file.path}>
-      {file.path} - {file.size} bytes
-      </li>
-      </div>
+      <div className="preview-section" key={file.name}>
+        {file.type === "application/pdf" ? (
+          <div className="preview-pdf">
+            <PDFPreview preview={file} />
+          </div>
+        ) : (
+          <div className="preview-image">
+            {/* <label>
+              {file.path} - {file.size} bytes
+            </label> */}
+            <img
+              src={URL.createObjectURL(file)}
+              onLoad={() => {
+                URL.revokeObjectURL(URL.createObjectURL(file));
+              }}
+            />
+          </div>
+        )}
       </div>
     );
   });
 
-
   useEffect(() => {
     // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
-    return () => files.forEach(file => file.type === 'application/pdf'? null : URL.revokeObjectURL(URL.createObjectURL(file)));
+    return () =>
+      files.forEach((file) =>
+        file.type === "application/pdf"
+          ? null
+          : URL.revokeObjectURL(URL.createObjectURL(file))
+      );
   }, []);
 
   return (
@@ -77,7 +73,7 @@ const UploadDocument = ({ selectedInfo, setSelectedInfo, setErrorMessage }) => {
         </div>
         {uploadedFile.length > 0 ? (
           <aside className="uploaded-container">
-            <h5>Files</h5>
+            {/* <h5>Files</h5> */}
             {files}
           </aside>
         ) : null}
@@ -89,32 +85,32 @@ const UploadDocument = ({ selectedInfo, setSelectedInfo, setErrorMessage }) => {
 export default UploadDocument;
 
 const thumbsContainer = {
-  display: 'flex',
-  flexDirection: 'row',
-  flexWrap: 'wrap',
-  marginTop: 16
+  display: "flex",
+  flexDirection: "row",
+  flexWrap: "wrap",
+  marginTop: 16,
 };
 
-const thumb = {
-  display: 'inline-flex',
-  borderRadius: 2,
-  border: '1px solid #eaeaea',
-  marginBottom: 8,
-  marginRight: 8,
-  width: 100,
-  height: 100,
-  padding: 4,
-  boxSizing: 'border-box'
-};
+// const thumb = {
+//   display: "inline-flex",
+//   borderRadius: 2,
+//   border: "1px solid #eaeaea",
+//   marginBottom: 8,
+//   marginRight: 8,
+//   width: 100,
+//   height: 100,
+//   padding: 4,
+//   boxSizing: "border-box",
+// };
 
 const thumbInner = {
-  display: 'flex',
+  display: "flex",
   minWidth: 0,
-  overflow: 'hidden'
+  overflow: "hidden",
 };
 
 const img = {
-  display: 'block',
-  width: 'auto',
-  height: '100%'
+  display: "block",
+  width: "auto",
+  height: "100%",
 };

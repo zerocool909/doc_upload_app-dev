@@ -7,34 +7,41 @@ const CustomDatas = ({ selectedInfo, setSelectedInfo }) => {
 
   const handleChange = (e) => {
     const { value, checked } = e.target;
-    const tempArr = customDatas.map(obj => obj.id === value ? { ...obj, checked: checked } : obj)
-    setCustomData(tempArr)
+    const tempArr = customDatas.map((obj) =>
+      obj.id === value ? { ...obj, checked: checked } : obj
+    );
+    setCustomData(tempArr);
+  };
 
-}
+  const checkDivContent = (strId) => {
+    if (strId !== "" && strId != undefined) {
+      document.getElementById("check_" + strId).checked =
+        !document.getElementById("check_" + strId).checked;
+    }
+  };
 
   return (
-    <div className="document-type-container">
-      <div className="check-box-section">
-        <label className="document-type-container-title">
-          Please choose data types?
-        </label>
+    <div className="check-box-section-list">
+      <label className="document-type-container-title">
+        Please choose data types?
+      </label>
 
-        {customDatas.map((item) => {
-          return (
-            <div className="form-check-container">
-              <input
-                className="form-check-input"
-                type="checkbox"
-                id={item.id}
-                name={item.name}
-                value={item.id}
-                onChange={handleChange}
-                checked={item.checked}
-              />
-            </div>
-          );
-        })}
-      </div>
+      {customDatas.map((item, index) => {
+        return (
+          <div className="form-check-container-list" key={index}>
+            <input
+              className="form-check-input"
+              type="checkbox"
+              id={"check_" + item.id}
+              name={item.name}
+              value={item.id}
+              onChange={handleChange}
+              checked={item.checked}
+            />
+            <label htmlFor={"check_" + item.id}>{item.name}</label>
+          </div>
+        );
+      })}
     </div>
   );
 };

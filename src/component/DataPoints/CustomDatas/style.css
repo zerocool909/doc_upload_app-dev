@@ -36,3 +36,29 @@
     padding-left: 5px;
     cursor: pointer;
 }
+
+.check-box-section-list{
+    display: flex;
+    flex-direction: column;
+    padding: 18px 0px 0px 12px;
+}
+
+.check-box-section-list label {
+    font-size: 18px;
+}
+.form-check-container-list{
+    border: 1px solid #73bf45;
+    margin-right: 10px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+.form-check-container-list input {
+    margin-right: 5px;
+    margin-top: 6px;
+}
+.form-check-container-list label {
+    font-size: 16px;
+    cursor: pointer;
+}
