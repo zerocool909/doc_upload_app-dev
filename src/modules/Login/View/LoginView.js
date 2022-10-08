@@ -5,6 +5,7 @@ import logo from "../../../images/boare_ai-logo_white.jpg";
 const LoginView = ({ setIsLoggedIn }) => {
   const handleLogin = () => {
     localStorage.setItem("isLogin", "Yes");
+    localStorage.setItem("donotShow", "No");
     setIsLoggedIn(true);
   };
   return (

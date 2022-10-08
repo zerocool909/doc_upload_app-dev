@@ -52,3 +52,29 @@
     height: 200px;
         margin-bottom: 15px;
 }
+
+.modal-footer-container{
+    display: flex;
+    flex: auto;
+    justify-content: space-between;
+}
+
+
+check-input:checked {
+    background-color: #73bf45 !important;
+    border-color: #73bf45 !important;
+}
+.check-container input {
+    margin-right: 5px;
+    margin-top: 6px;
+}
+
+.check-container label {
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.check-container.btn-secondary {
+    background-color: #73bf45;
+    border: none;
+}

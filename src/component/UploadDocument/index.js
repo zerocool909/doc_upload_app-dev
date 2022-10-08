@@ -2,9 +2,26 @@ import React, { useEffect, useState, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { PDFPreview } from "./PDFPreview/PDFPreview";
 import "./style.css";
+import { Modal, Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.css";
 
 const UploadDocument = ({ selectedInfo, setSelectedInfo, setErrorMessage }) => {
   const [uploadedFile, setUploadedFile] = useState([]);
+  const [show, setShow] = useState(false);
+  const [dontShow, setdontShow] = useState(false);
+  useEffect(() => {
+    localStorage.getItem("donotShow") == 'Yes'? setShow(false) : setShow(true)
+  }, []);
+
+  const handleClose = () => setShow(false);
+  const dontShowAgainChecked = (e) =>  setdontShow(e.target.checked)
+  const acceptOnClick = () => {
+    if(dontShow)
+    {
+      localStorage.setItem("donotShow", "Yes");
+    }
+    handleClose();
+  }
 
   const onDrop = useCallback((acceptedFiles) => {
     if (acceptedFiles.length) {
@@ -22,7 +39,7 @@ const UploadDocument = ({ selectedInfo, setSelectedInfo, setErrorMessage }) => {
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
-      "image/*": [],
+      // "image/*": [],
       "application/pdf": [".pdf"],
     },
     onDrop,
@@ -37,9 +54,6 @@ const UploadDocument = ({ selectedInfo, setSelectedInfo, setErrorMessage }) => {
           </div>
         ) : (
           <div className="preview-image">
-            {/* <label>
-              {file.path} - {file.size} bytes
-            </label> */}
             <img
               src={URL.createObjectURL(file)}
               onLoad={() => {
@@ -63,54 +77,56 @@ const UploadDocument = ({ selectedInfo, setSelectedInfo, setErrorMessage }) => {
   }, []);
 
   return (
-    <div className="document-type-container">
-      <section className="">
-        <div className="upload-document-container">
-          <div {...getRootProps({ className: "dropzone" })}>
-            <input {...getInputProps()} />
-            <p>Drag 'n' drop some files here, or click to select files</p>
+    <>
+      <div className="document-type-container">
+        <section className="">
+          <div className="upload-document-container">
+            <div {...getRootProps({ className: "dropzone" })}>
+              <input {...getInputProps()} />
+              <p>Drag 'n' drop some files here, or click to select files</p>
+            </div>
           </div>
-        </div>
-        {uploadedFile.length > 0 ? (
-          <aside className="uploaded-container">
-            {/* <h5>Files</h5> */}
-            {files}
-          </aside>
-        ) : null}
-      </section>
-    </div>
+          {uploadedFile.length > 0 ? (
+            <aside className="uploaded-container">{files}</aside>
+          ) : null}
+        </section>
+      </div>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Disclaimer</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>
+            To get best quality output we recommend the input/source document
+            resolution to be atleast 300 DPI. Please ensure Document is aligned
+            correctly in potrait format. Processing time depends on number of
+            pages, quality of input source document, your hardware
+            Specifications & internet connectivity. Request you to be patient if
+            either of the above factors are not optimal. We recommend you to
+            close all background apps & refresh your cache before you start
+            processing.
+          </p>
+        </Modal.Body>
+        <Modal.Footer>
+          <div className="modal-footer-container">
+          <div className="check-container" >
+            <input
+              className="check-input"
+              type="checkbox"
+              id='check1'
+              name='check'
+              value='dontShowAgain'
+              onChange={dontShowAgainChecked}
+              checked={dontShow}
+            />
+            <label htmlFor='check1'>Don't show this msg again</label>
+          </div>
+          <Button variant="secondary" onClick={acceptOnClick}>Accept</Button>
+          </div>
+        </Modal.Footer>
+      </Modal>
+    </>
   );
 };
 
 export default UploadDocument;
-
-const thumbsContainer = {
-  display: "flex",
-  flexDirection: "row",
-  flexWrap: "wrap",
-  marginTop: 16,
-};
-
-// const thumb = {
-//   display: "inline-flex",
-//   borderRadius: 2,
-//   border: "1px solid #eaeaea",
-//   marginBottom: 8,
-//   marginRight: 8,
-//   width: 100,
-//   height: 100,
-//   padding: 4,
-//   boxSizing: "border-box",
-// };
-
-const thumbInner = {
-  display: "flex",
-  minWidth: 0,
-  overflow: "hidden",
-};
-
-const img = {
-  display: "block",
-  width: "auto",
-  height: "100%",
-};
