@@ -70,11 +70,25 @@ check-input:checked {
 }
 
 .check-container label {
-    font-size: 16px;
+    font-size: 15px;
     cursor: pointer;
+    font-weight: 500;
 }
 
-.check-container.btn-secondary {
+ .check-input-accept:checked {
+    background-color: #73bf45 !important;
+    border-color: #73bf45 !important;
+ }
+ .modal-confimr-header{
+    display: flex;
+    justify-content: space-between;
+    padding: 11px 20px;
+    border-radius: 5px 5px 0px 0px;
     background-color: #73bf45;
-    border: none;
-}
+    color: #fff;
+ }
+ .modal-confimr-header span {
+    cursor: pointer;
+ }
+
+ 

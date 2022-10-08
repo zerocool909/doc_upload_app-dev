@@ -54,3 +54,9 @@
 .error-section small {
   color: red;
 }
+.btn-common{
+    width: 72px;
+    background: #73bf45 !important;
+    border: none !important;
+    color: #fff !important;
+}

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { PDFPreview } from "./PDFPreview/PDFPreview";
 import "./style.css";
-import { Modal, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 
 const UploadDocument = ({ selectedInfo, setSelectedInfo, setErrorMessage }) => {
@@ -10,18 +10,17 @@ const UploadDocument = ({ selectedInfo, setSelectedInfo, setErrorMessage }) => {
   const [show, setShow] = useState(false);
   const [dontShow, setdontShow] = useState(false);
   useEffect(() => {
-    localStorage.getItem("donotShow") == 'Yes'? setShow(false) : setShow(true)
+    localStorage.getItem("donotShow") == "Yes" ? setShow(false) : setShow(true);
   }, []);
 
   const handleClose = () => setShow(false);
-  const dontShowAgainChecked = (e) =>  setdontShow(e.target.checked)
+  const dontShowAgainChecked = (e) => setdontShow(e.target.checked);
   const acceptOnClick = () => {
-    if(dontShow)
-    {
+    if (dontShow) {
       localStorage.setItem("donotShow", "Yes");
     }
     handleClose();
-  }
+  };
 
   const onDrop = useCallback((acceptedFiles) => {
     if (acceptedFiles.length) {
@@ -92,9 +91,12 @@ const UploadDocument = ({ selectedInfo, setSelectedInfo, setErrorMessage }) => {
         </section>
       </div>
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Disclaimer</Modal.Title>
-        </Modal.Header>
+        <header closeButton className="modal-confimr-header">
+          <h5>Disclaimer</h5>
+          <span onClick={handleClose}>
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </span>
+        </header>
         <Modal.Body>
           <p>
             To get best quality output we recommend the input/source document
@@ -109,19 +111,25 @@ const UploadDocument = ({ selectedInfo, setSelectedInfo, setErrorMessage }) => {
         </Modal.Body>
         <Modal.Footer>
           <div className="modal-footer-container">
-          <div className="check-container" >
-            <input
-              className="check-input"
-              type="checkbox"
-              id='check1'
-              name='check'
-              value='dontShowAgain'
-              onChange={dontShowAgainChecked}
-              checked={dontShow}
-            />
-            <label htmlFor='check1'>Don't show this msg again</label>
-          </div>
-          <Button variant="secondary" onClick={acceptOnClick}>Accept</Button>
+            <div className="check-container">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="check1"
+                name="check"
+                value="dontShowAgain"
+                onChange={dontShowAgainChecked}
+                checked={dontShow}
+              />
+              <label htmlFor="check1">Don't show this msg again</label>
+            </div>
+            <button
+              className="btn btn-common"
+              variant="secondary"
+              onClick={acceptOnClick}
+            >
+              Accept
+            </button>
           </div>
         </Modal.Footer>
       </Modal>
