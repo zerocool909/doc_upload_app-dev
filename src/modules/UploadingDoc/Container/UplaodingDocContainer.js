@@ -61,28 +61,29 @@ const UplaodingDocContainer = ({ setIsLoggedIn }) => {
     },
   ];
   const onClickNext = () => {
-    if (activeStep > 2) {
-      setActiveStep(0);
-    } else {
-      if (selectedInfo.document_types != "" && activeStep === 0) {
-        setActiveStep(activeStep + 1);
-        setErrorMessage("");
-      } else if (selectedInfo.data_points != "" && activeStep === 1) {
-        setActiveStep(activeStep + 1);
-        setErrorMessage("");
-      } else if (selectedInfo.uploaded_file.length && activeStep === 2) {
-        setActiveStep(activeStep + 1);
-        setErrorMessage("");
-      } else {
-        if (activeStep === 0) {
-          setErrorMessage("Please select any Document Type");
-        } else if (activeStep === 1) {
-          setErrorMessage("Please select any Data Points");
-        } else if (activeStep === 2) {
-          setErrorMessage("Please Upload atleast one File");
-        }
-      }
-    }
+    setActiveStep(activeStep + 1);
+    // if (activeStep > 2) {
+    //   setActiveStep(0);
+    // } else {
+    //   if (selectedInfo.document_types != "" && activeStep === 0) {
+    //     setActiveStep(activeStep + 1);
+    //     setErrorMessage("");
+    //   } else if (selectedInfo.data_points != "" && activeStep === 1) {
+    //     setActiveStep(activeStep + 1);
+    //     setErrorMessage("");
+    //   } else if (selectedInfo.uploaded_file.length && activeStep === 2) {
+    //     setActiveStep(activeStep + 1);
+    //     setErrorMessage("");
+    //   } else {
+    //     if (activeStep === 0) {
+    //       setErrorMessage("Please select any Document Type");
+    //     } else if (activeStep === 1) {
+    //       setErrorMessage("Please select any Data Points");
+    //     } else if (activeStep === 2) {
+    //       setErrorMessage("Please Upload atleast one File");
+    //     }
+    //   }
+    // }
   };
   useEffect(() => {
     setErrorMessage("");

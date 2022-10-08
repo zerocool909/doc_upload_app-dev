@@ -1,20 +1,53 @@
+import "./style.css";
+import { mockData } from "./mockData";
+import { useEffect, useState } from "react";
+
 const CheckResults = ({ selectedInfo }) => {
+  const [info, setInfo] = useState([]);
+
+  useEffect(() => {
+    const tempArray = [];
+    let tempObj = {};
+    for (var key in mockData) {
+      if (mockData.hasOwnProperty(key)) {
+        tempObj = {
+          name: key,
+          value: mockData[key],
+        };
+        tempArray.push(tempObj);
+      }
+    }
+    setInfo(tempArray);
+  }, []);
   return (
-    <div className="document-type-container">
-      <div>
-        <strong>Document Types : </strong> {selectedInfo.document_types}
+    <div className="check-result-container">
+      <div className="check-result-header">
+        <h5>Check Result</h5>
       </div>
-      <div>
-        <strong>Data Points : </strong>
-        {selectedInfo.data_points}
-      </div>
-      <div>
-        <strong>Uploaded Document</strong>
-        <ul>
-          {selectedInfo.uploaded_file.map((files, index) => {
-            return <li key={index}>{files.name}</li>;
-          })}
-        </ul>
+      <div className="row ">
+        <div className="col-md-6">
+          <div>Pdf View</div>
+        </div>
+        <div className="col-md-6">
+          <div className="check-result-container-right">
+            <ul>
+              {info.map((data, index) => {
+                return (
+                  <li key={index}>
+                    <label>{data.name}</label>
+                    <div>
+                      <input
+                        type="text"
+                        className="form-control"
+                        value={data.value}
+                      />
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   );
