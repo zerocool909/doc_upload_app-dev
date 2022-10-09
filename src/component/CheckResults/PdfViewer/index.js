@@ -8,7 +8,7 @@ const options = {
   standardFontDataUrl: "standard_fonts/",
 };
 
-export const PDFPreview = ({ preview, setPreview }) => {
+export const PdfViewer = ({ preview, setPreview }) => {
   const [file, setFile] = useState(preview);
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
@@ -31,9 +31,9 @@ export const PDFPreview = ({ preview, setPreview }) => {
   }
 
   return (
-    <div className="Example">
-      <div className="Example__container">
-        <div className="Example__container__document">
+    <div className="Pdf">
+      {/* <div className="Pdf__container"> */}
+        <div className="Pdf__container__document">
           <Document
             file={file}
             onLoadSuccess={onDocumentLoadSuccess}
@@ -41,7 +41,7 @@ export const PDFPreview = ({ preview, setPreview }) => {
           >
             <Page pageNumber={pageNumber} />
           </Document>
-          <div className="bottom_section">
+          <div className="bottom_section_pdf">
             <button
               type="button"
               disabled={pageNumber <= 1}
@@ -61,7 +61,7 @@ export const PDFPreview = ({ preview, setPreview }) => {
             </button>
           </div>
         </div>
-      </div>
+      {/* </div> */}
     </div>
   );
 };

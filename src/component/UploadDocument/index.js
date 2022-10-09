@@ -91,10 +91,10 @@ const UploadDocument = ({ selectedInfo, setSelectedInfo, setErrorMessage }) => {
         </section>
       </div>
       <Modal show={show} onHide={handleClose}>
-        <header closeButton className="modal-confimr-header">
+        <header className="modal-confimr-header">
           <h5>Disclaimer</h5>
           <span onClick={handleClose}>
-            <i class="fa fa-times" aria-hidden="true"></i>
+            <i className="fa fa-times" aria-hidden="true"></i>
           </span>
         </header>
         <Modal.Body>
