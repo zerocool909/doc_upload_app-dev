@@ -31,9 +31,10 @@
   width: 100%;
   display: flex;
   border-bottom: 1px solid #73bf45;
+  display: flex;
+  justify-content: flex-start;
 }
-.check-result-container-right ul li label {
-  width: 30%;
+.left-title-section .heading-title {
   font-size: 15px;
   font-weight: 600;
 }
@@ -43,7 +44,7 @@
   display: flex;
 }
 .check-result-container-right ul li div input {
-  border-color: #fff;
+  border-color: #73bf45;
   width: 100%;
   font-size: 14px;
   font-weight: 400;
@@ -54,6 +55,7 @@
 }
 .check-result-container-right ul li div input:focus {
   box-shadow: none;
+  border-color: #73bf45;;
 }
 
 .wating-container {
@@ -67,4 +69,7 @@
 .waiting-img {
   height: 20% !important;
   width: 30% !important;
+}
+.value-section label {
+  overflow: hidden;
 }
