@@ -37,11 +37,17 @@
 .left-title-section .heading-title {
   font-size: 15px;
   font-weight: 600;
+  white-space: normal;
 }
-.check-result-container-right ul li div {
-  width: 70%;
+.check-result-container-right ul li > div {
+  width: 45%;
   margin: 0px 10px;
   display: flex;
+  flex-wrap: wrap;
+}
+.check-result-container-right ul li > div:nth-child(3){
+  width: 10%;
+  justify-content: flex-end;
 }
 .check-result-container-right ul li div input {
   border-color: #73bf45;
@@ -71,5 +77,8 @@
   width: 30% !important;
 }
 .value-section label {
-  overflow: hidden;
+  white-space: normal;
+}
+.check-result-container-right ul li>div:nth-child(3) i {
+  margin-left: 10px;
 }
