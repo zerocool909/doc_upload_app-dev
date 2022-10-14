@@ -9,9 +9,11 @@
   margin-right: 10px;
   padding: 10px;
   border-radius: 10px;
+  margin-bottom: 10px;
 }
   .check-box-section{
     display: flex;
+    flex-wrap: wrap;
   }
   .document-type-container-title{
     margin-bottom: 10px;

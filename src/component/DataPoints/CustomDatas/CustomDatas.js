@@ -2,16 +2,16 @@ import { useEffect, useState } from "react";
 import { customDatasArr } from "./CustomDataValues";
 import "./style.css";
 
-const CustomDatas = ({ selectedInfo, setSelectedInfo }) => {
-  const [customDatas, setCustomData] = useState(customDatasArr);
+const CustomDatas = ({ selectedInfo, setSelectedInfo, customDatas, handleChangeCustomData }) => {
+  // const [customDatas, setCustomData] = useState(customDatasArr);
 
-  const handleChange = (e) => {
-    const { value, checked } = e.target;
-    const tempArr = customDatas.map((obj) =>
-      obj.id === value ? { ...obj, checked: checked } : obj
-    );
-    setCustomData(tempArr);
-  };
+  // const handleChange = (e) => {
+  //   const { value, checked } = e.target;
+  //   const tempArr = customDatas.map((obj) =>
+  //     obj.id === value ? { ...obj, checked: checked } : obj
+  //   );
+  //   setCustomData(tempArr);
+  // };
 
   const checkDivContent = (strId) => {
     if (strId !== "" && strId != undefined) {
@@ -35,7 +35,7 @@ const CustomDatas = ({ selectedInfo, setSelectedInfo }) => {
               id={"check_" + item.id}
               name={item.name}
               value={item.id}
-              onChange={handleChange}
+              onChange={handleChangeCustomData}
               checked={item.checked}
             />
             <label htmlFor={"check_" + item.id}>{item.name}</label>

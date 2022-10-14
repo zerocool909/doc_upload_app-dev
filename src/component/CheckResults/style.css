@@ -82,3 +82,8 @@
 .check-result-container-right ul li>div:nth-child(3) i {
   margin-left: 10px;
 }
+
+.export-btn-container {
+  display: flex;
+  justify-content: flex-end;
+}

@@ -49,7 +49,7 @@
 .preview-section {
     display: flex;
     width: 25%;
-    height: 200px;
+    /* height: 200px; */
         margin-bottom: 15px;
 }
 

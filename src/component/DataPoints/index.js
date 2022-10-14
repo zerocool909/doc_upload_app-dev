@@ -1,15 +1,43 @@
 import { useState } from "react";
 import CustomDatas from "./CustomDatas/CustomDatas";
+import { customDatasArr } from "./CustomDatas/CustomDataValues";
 import "./style.css";
 const DataPoints = ({ selectedInfo, setSelectedInfo }) => {
   const [customDataShow , setcustomDataShow] = useState(false)
+
+  const [customDatas, setCustomData] = useState(customDatasArr);
+
+  const handleChangeCustomData = (e) => {
+    const { value, checked } = e.target;
+    const selectedData = []
+    const tempArr = customDatas.map((obj) =>
+      obj.id === value ? { ...obj, checked: checked } : obj
+    );
+    setCustomData(tempArr);
+    tempArr.forEach(element => {
+      if (element.checked === true)
+      {
+        selectedData.push(element);
+      }
+    });
+    const strSelectedValue = { ...selectedInfo };
+    strSelectedValue.customDataArray = selectedData;
+    setSelectedInfo(strSelectedValue);
+  };
 
   const handleChange = (optionValue) => {
     const strSelectedValue = { ...selectedInfo };
     strSelectedValue.data_points = optionValue;
     setSelectedInfo(strSelectedValue);
-    setcustomDataShow(optionValue === 'Customs Data')
+    setcustomDataShow(optionValue === 'Custom Data')
+    if(optionValue === 'All data points')
+    {
+      strSelectedValue.customDataArray = [];
+    setSelectedInfo(strSelectedValue);
+    }
   };
+
+
   return (
     <div className="document-type-container">
       <label className="document-type-container-title">
@@ -35,15 +63,15 @@ const DataPoints = ({ selectedInfo, setSelectedInfo }) => {
             className="form-check-input"
             id="radio2"
             name="optradio"
-            value="Customs Data"
-            onChange={() => handleChange("Customs Data")}
+            value="Custom Data"
+            onChange={() => handleChange("Custom Data")}
           />
           <label className="form-check-label" htmlFor="radio2">
-          Customs Data
+          Custom Data
           </label>
         </div>
       </div>
-      {customDataShow ? <CustomDatas/> : null}
+      {customDataShow ? <CustomDatas customDatas={customDatas} handleChangeCustomData={handleChangeCustomData}/> : null}
     </div>
   );
 };

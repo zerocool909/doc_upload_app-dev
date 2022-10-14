@@ -1,56 +1,57 @@
 import "./style.css";
-import { mockData } from "./mockData";
 import { useEffect, useState } from "react";
 import { PdfViewer } from "./PdfViewer";
 import axios from "axios";
-import waiting from "../../images/Waiting.gif";
 import { Spinner } from "react-bootstrap";
+import { handleDownloadExcel, pdfConvert } from "./utill";
 
 const CheckResults = ({ selectedInfo }) => {
-  const [editKey, setEditKey] = useState(null);
   const [fieldValue, setFieldValue] = useState("");
   const [info, setInfo] = useState([]);
-  const [waitingLoader, setWatingLoader] = useState(false);
+  const [excelData, setExcelData] = [];
+  const [waitingLoader, setWatingLoader] = useState(true);
   const baseURL =
     "https://contractsdataextractionv1.azurewebsites.net/api/contract_extraction_function";
+
   const apiCalling = async () => {
-    let headersList = {
-      Accept: "*/*",
-      "User-Agent": "Thunder Client (https://www.thunderclient.com)",
-      "Content-Type": "application/json",
-    };
-
-    let bodyContent = JSON.stringify({
-      name: "15.pdf",
-    });
-
-    // axios
-    //   .post(baseURL, {
-    //     mode: 'no-cors',
-    //     body: bodyContent,
-    //     headers : headersList
-    //   })
-    //   .then((response) => {
-
-    //   console.log('data', response.data);
-    //   });
-
-    try {
-      let response = await fetch(
-        "https://contractsdataextractionv1.azurewebsites.net/api/contract_extraction_function",
-        {
-          method: "POST",
-          body: bodyContent,
-          headers: headersList,
+    axios({
+      url: baseURL,
+      method: "POST",
+      headers: {
+        Accept: "*/*",
+        "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+        "Content-Type": "application/json",
+      },
+      data: { name: selectedInfo.uploaded_file[0].name },
+    })
+      .then((res) => {
+        console.log("data", res);
+        const tempArray = [];
+        let tempObj = {};
+        for (let key in res.data) {
+          if (res.data.hasOwnProperty(key)) {
+            tempObj = {
+              name: key,
+              value: res.data[key],
+            };
+            tempArray.push(tempObj);
+          }
         }
-      );
+        console.log('tt', tempArray);
+        if(selectedInfo.data_points === 'All data points'){
+        setInfo(tempArray);
+        }
+        else{
+          let res = tempArray.filter(n => selectedInfo.customDataArray.some(n2 => n.name == n2.name));
+          setInfo(res);
+        }
+        setWatingLoader(false);
+      })
 
-      let data = await response.text();
-      console.log("data", response.body);
-      setWatingLoader(false);
-    } catch (err) {
-      console.log(err);
-    }
+      // Catch errors if any
+      .catch((err) => {
+        console.log("err", err);
+      });
   };
 
   const handleEdit = (index, key, value) => {
@@ -79,6 +80,10 @@ const CheckResults = ({ selectedInfo }) => {
     document.getElementById("save_" + i).classList.add("d-none");
     document.getElementById("cancel_" + i).classList.add("d-none");
     document.getElementById("edit_" + i).classList.remove("d-none");
+    let updatedValue = info.map((ele) =>
+      ele.name === key ? { ...ele, value: fieldValue } : ele
+    );
+    setInfo(updatedValue);
   };
   const handleClose = (index, key, value) => {
     document.getElementById("span_" + index).classList.remove("d-none");
@@ -92,20 +97,30 @@ const CheckResults = ({ selectedInfo }) => {
     setFieldValue(value);
   };
 
-  useEffect(() => {
-    const tempArray = [];
-    let tempObj = {};
-    apiCalling();
-    for (var key in mockData) {
-      if (mockData.hasOwnProperty(key)) {
-        tempObj = {
-          name: key,
-          value: mockData[key],
-        };
-        tempArray.push(tempObj);
-      }
+  const onExportDataPdf = () => {
+    console.log("eeee");
+    let arr = [];
+    for (const element of info) {
+      arr.push([element.name, element.value]);
     }
-    setInfo(tempArray);
+    console.log(arr);
+    pdfConvert(arr).save("data.pdf");
+  };
+
+  const onExportDataExcel = () => {
+    let arr = [];
+    for (const element of info) {
+      arr.push([element.name, element.value]);
+    }
+    console.log(arr);
+    setExcelData(arr);
+    handleDownloadExcel(arr);
+  };
+
+  useEffect(() => {
+    apiCalling();
+    console.log('a', selectedInfo.customDataArray);
+    console.log('k', selectedInfo.data_points);
   }, []);
 
   return (
@@ -117,7 +132,7 @@ const CheckResults = ({ selectedInfo }) => {
         <div className="wating-container">
           {/* <img className="waiting-img" src={waiting} alt="loading..." /> */}
           <Spinner animation="border" />
-          Please Wait... Your files is being processed ......
+          Please Wait... Your file(s) are being processed......
         </div>
       ) : (
         <div className="row ">
@@ -176,6 +191,22 @@ const CheckResults = ({ selectedInfo }) => {
                   );
                 })}
               </ul>
+              <div className="export-btn-container">
+                <button
+                  className="btn btn-common"
+                  variant="secondary"
+                  onClick={onExportDataPdf}
+                >
+                  Export Data as a PDF
+                </button>
+                <button
+                  className="btn btn-common"
+                  variant="secondary"
+                  onClick={onExportDataExcel}
+                >
+                  Export Data to excel
+                </button>
+              </div>
             </div>
           </div>
         </div>

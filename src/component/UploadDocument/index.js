@@ -98,7 +98,7 @@ const UploadDocument = ({ selectedInfo, setSelectedInfo, setErrorMessage }) => {
           </span>
         </header>
         <Modal.Body>
-          <p>
+          {/* <p>
             To get best quality output we recommend the input/source document
             resolution to be atleast 300 DPI. Please ensure Document is aligned
             correctly in potrait format. Processing time depends on number of
@@ -107,7 +107,30 @@ const UploadDocument = ({ selectedInfo, setSelectedInfo, setErrorMessage }) => {
             either of the above factors are not optimal. We recommend you to
             close all background apps & refresh your cache before you start
             processing.
-          </p>
+          </p> */}
+          <ul>
+            <li>To get best quality output we recommend the input/source document
+            resolution to be atleast 300 DPI.
+            </li>
+            <li>
+            Please ensure Document is aligned
+            correctly in potrait format.
+            </li>
+            <li>
+            Processing time depends on number of
+            pages, quality of input source document, your hardware
+            Specifications & internet connectivity.
+            </li>
+            <li>
+            Request you to be patient if
+            either of the above factors are not optimal.
+            </li>
+            <li>
+            We recommend you to
+            close all background apps & refresh your cache before you start
+            processing.
+            </li>
+          </ul>
         </Modal.Body>
         <Modal.Footer>
           <div className="modal-footer-container">

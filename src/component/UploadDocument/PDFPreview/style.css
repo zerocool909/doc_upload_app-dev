@@ -49,9 +49,9 @@
   }
   
   .Example__container__document .react-pdf__Page canvas {
-    max-width: 200px !important;
-    height: 200px !important;
-    width: 200px !important;
+    max-width: 400px !important;
+    height: 400px !important;
+    width: 400px !important;
   }
   
   .Example__container__document .react-pdf__message {
@@ -61,7 +61,7 @@
   .bottom_section{
     position: absolute;
       bottom: 10px;
-      left: 50px;
+      left: 150px;
       opacity: 0;
       transition: opacity ease-in-out 0.2s;
       border-radius: 5px;

@@ -1,55 +1,39 @@
+import { dataTypeOptions } from "./dataTypesOptions";
 import "./style.css";
 const DocumentTypes = ({ selectedInfo, setSelectedInfo }) => {
+  
   const handleChange = (optionValue) => {
     const strSelectedValue = { ...selectedInfo };
     strSelectedValue.document_types = optionValue;
     setSelectedInfo(strSelectedValue);
   };
+
   return (
     <div className="document-type-container">
       <label className="document-type-container-title">
         What kind of Document is this?
       </label>
       <div className="check-box-section">
-        <div className="form-check-container">
+        {
+          dataTypeOptions.map((item, index) =>
+          {
+            return(
+              <div className="form-check-container" key={index}>
           <input
             type="radio"
             className="form-check-input"
-            id="radio1"
+            id={item.id}
             name="optradio"
-            value="Rent Roll"
-            onChange={() => handleChange("Rent Roll")}
+            value={item.value}
+            onChange={() => handleChange(item.value)}
           />
-          <label className="form-check-label" htmlFor="radio1">
-            Rent Roll
+          <label className="form-check-label" htmlFor={item.id}>
+           {item.value}
           </label>
         </div>
-        <div className="form-check-container">
-          <input
-            type="radio"
-            className="form-check-input"
-            id="radio2"
-            name="optradio"
-            value="Property Deed"
-            onChange={() => handleChange("Property Deed")}
-          />
-          <label className="form-check-label" htmlFor="radio2">
-            Property Deed
-          </label>
-        </div>
-        <div className="form-check-container">
-          <input
-            type="radio"
-            className="form-check-input"
-            id="radio3"
-            name="optradio"
-            value="Closing Disclosure"
-            onChange={() => handleChange("Closing Disclosure")}
-          />
-          <label className="form-check-label" htmlFor="radio3">
-            Closing Disclosure
-          </label>
-        </div>
+            )
+          })
+        }
       </div>
     </div>
   );

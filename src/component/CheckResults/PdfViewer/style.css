@@ -50,7 +50,7 @@
 .bottom_section_pdf {
   position: absolute;
   bottom: 10px;
-  left: 200px;
+  /* left: 200px; */
   opacity: 0;
   transition: opacity ease-in-out 0.2s;
   border-radius: 5px;

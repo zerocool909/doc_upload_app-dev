@@ -55,10 +55,11 @@
   color: red;
 }
 .btn-common{
-    width: 72px;
+    /* width: 72px; */
     background: #73bf45 !important;
     border: none !important;
     color: #fff !important;
+    margin: 10px;
 }
 .d-none{
   display: none;

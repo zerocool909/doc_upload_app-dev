@@ -10,6 +10,7 @@ const UplaodingDocContainer = ({ setIsLoggedIn }) => {
   const [selectedInfo, setSelectedInfo] = useState({
     document_types: "",
     data_points: "",
+    customDataArray: [],
     uploaded_file: [],
   });
   const [errorMessage, setErrorMessage] = useState("");
