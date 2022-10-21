@@ -20,12 +20,12 @@ const UplaodingDocView = (props) => {
       <div className="error-section">
         <small>{errorMessage}</small>
       </div>
-      {steps !== 3 && <button
+     <button
         className="btn btn-primary btn-next"
         onClick={() => onClickNext()}
       >
         Next
-      </button>}
+      </button>
     </div>
   );
 };
