@@ -53,7 +53,10 @@
     height: 400px !important;
     width: 400px !important;
   }
-  
+
+  .Example__container__document .react-pdf__Page .react-pdf__Page__textContent 
+  {display: none;}
+
   .Example__container__document .react-pdf__message {
     padding: 20px;
     color: white;
