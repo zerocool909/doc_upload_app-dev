@@ -62,7 +62,7 @@ const UplaodingDocContainer = ({ setIsLoggedIn }) => {
     },
   ];
   const onClickNext = () => {
-    setActiveStep(activeStep + 1);
+    // setActiveStep(activeStep + 1);
     if (activeStep > 2) {
       setActiveStep(0);
     } else {
