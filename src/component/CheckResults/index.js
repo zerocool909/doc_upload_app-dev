@@ -42,7 +42,7 @@ const CheckResults = ({ selectedInfo }) => {
         setInfo(tempArray);
         }
         else{
-          let res = tempArray.filter(n => selectedInfo.customDataArray.some(n2 => n.name == n2.name));
+          let res = tempArray.filter(n => selectedInfo.customDataArray.some(n2 => n.name === n2.name));
           setInfo(res);
         }
         setWatingLoader(false);

@@ -13,12 +13,12 @@ const CustomDatas = ({ selectedInfo, setSelectedInfo, customDatas, handleChangeC
   //   setCustomData(tempArr);
   // };
 
-  const checkDivContent = (strId) => {
-    if (strId !== "" && strId != undefined) {
-      document.getElementById("check_" + strId).checked =
-        !document.getElementById("check_" + strId).checked;
-    }
-  };
+  // const checkDivContent = (strId) => {
+  //   if (strId !== "" && strId != undefined) {
+  //     document.getElementById("check_" + strId).checked =
+  //       !document.getElementById("check_" + strId).checked;
+  //   }
+  // };
 
   return (
     <div className="check-box-section-list">
