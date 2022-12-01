@@ -10,7 +10,7 @@ const UploadDocument = ({ selectedInfo, setSelectedInfo, setErrorMessage }) => {
   const [show, setShow] = useState(false);
   const [dontShow, setdontShow] = useState(false);
   useEffect(() => {
-    localStorage.getItem("donotShow") == "Yes" ? setShow(false) : setShow(true);
+    localStorage.getItem("donotShow") === "Yes" ? setShow(false) : setShow(true);
   }, []);
 
   const handleClose = () => setShow(false);

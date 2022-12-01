@@ -66,10 +66,10 @@ const UplaodingDocContainer = ({ setIsLoggedIn }) => {
     if (activeStep > 2) {
       setActiveStep(0);
     } else {
-      if (selectedInfo.document_types != "" && activeStep === 0) {
+      if (selectedInfo.document_types !== "" && activeStep === 0) {
         setActiveStep(activeStep + 1);
         setErrorMessage("");
-      } else if (selectedInfo.data_points != "" && activeStep === 1) {
+      } else if (selectedInfo.data_points !== "" && activeStep === 1) {
         setActiveStep(activeStep + 1);
         setErrorMessage("");
       } else if (selectedInfo.uploaded_file.length && activeStep === 2) {
