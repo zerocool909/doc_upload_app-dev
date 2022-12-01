@@ -3,7 +3,7 @@ import "../src/styles/App.css";
 import LoginContainer from "./modules/Login/Container/LoginContainer";
 import UplaodingDocContainer from "./modules/UploadingDoc/Container/UplaodingDocContainer";
 
-function App() {
+export function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("isLogin") === "Yes" ? true : false
   );
@@ -17,4 +17,4 @@ function App() {
   );
 }
 
-export default App;
+// export default App;
