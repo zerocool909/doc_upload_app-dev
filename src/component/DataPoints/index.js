@@ -51,13 +51,14 @@ const DataPoints = ({ selectedInfo, setSelectedInfo }) => {
             id="radio1"
             name="optradio"
             value="All data points"
+            checked = {selectedInfo.data_points === "All data points"}
             onChange={() => handleChange("All data points")}
           />
           <label className="form-check-label" htmlFor="radio1">
           All data points
           </label>
         </div>
-        <div className="form-check-container">
+        {/* <div className="form-check-container">
           <input
             type="radio"
             className="form-check-input"
@@ -69,9 +70,9 @@ const DataPoints = ({ selectedInfo, setSelectedInfo }) => {
           <label className="form-check-label" htmlFor="radio2">
           Custom Data
           </label>
-        </div>
+        </div> */}
       </div>
-      {customDataShow ? <CustomDatas customDatas={customDatas} handleChangeCustomData={handleChangeCustomData}/> : null}
+      {/* {customDataShow ? <CustomDatas customDatas={customDatas} handleChangeCustomData={handleChangeCustomData}/> : null} */}
     </div>
   );
 };

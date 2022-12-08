@@ -1,6 +1,7 @@
 {
   "name": "doc_upload_app",
   "version": "0.1.0",
+  "main": "index.js",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
@@ -9,18 +10,21 @@
     "axios": "^1.1.2",
     "bootstrap": "^5.2.1",
     "cors": "^2.8.5",
+    "file-saver": "^2.0.5",
     "font-awesome": "^4.7.0",
     "jspdf": "^2.5.1",
     "jspdf-autotable": "^3.5.25",
     "rc-steps": "^4.1.4",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
+    "react-csv": "^2.2.2",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.2",
     "react-export-table-to-excel": "^1.0.6",
     "react-pdf": "^5.7.2",
     "react-scripts": "5.0.1",
     "react-stepper-horizontal": "^1.0.11",
+    "sheetjs-style": "^0.15.8",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

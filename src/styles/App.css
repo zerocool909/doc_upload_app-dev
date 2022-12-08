@@ -67,3 +67,17 @@
 .c-pointer{
   cursor: pointer;
 }
+.btn-container{
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+flex-direction: row-reverse;
+margin-bottom: 20px;
+}
+.btn-next1{
+  width: 72px;
+  border-radius: 25px;
+  background: #73bf45 !important;
+  border: none !important;
+  height: 45px;
+}

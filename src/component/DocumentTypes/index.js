@@ -25,6 +25,7 @@ const DocumentTypes = ({ selectedInfo, setSelectedInfo }) => {
             id={item.id}
             name="optradio"
             value={item.value}
+            checked={selectedInfo.document_types === item.value}
             onChange={() => handleChange(item.value)}
           />
           <label className="form-check-label" htmlFor={item.id}>

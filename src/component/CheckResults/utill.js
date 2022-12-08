@@ -1,6 +1,6 @@
 import jsPDF from "jspdf";
 import 'jspdf-autotable';
-import { downloadExcel } from "react-export-table-to-excel";
+import XLSX from 'sheetjs-style';
 
 export const pdfConvert = (data) =>
 {
@@ -26,14 +26,63 @@ export const pdfConvert = (data) =>
   return doc;
 }
 
-export const handleDownloadExcel  = (data) => {
-  downloadExcel({
-    fileName: "react-export-table-to-excel -> downloadExcel method",
-    sheet: "react-export-table-to-excel",
-    tablePayload: {
-      // header,
-      // accept two different data structures
-      body: data,
+
+export const excelConvert = (data) =>{
+  const fileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+  const ws = XLSX.utils.json_to_sheet(data);
+  for (let i = 1; i < data.length+2; i++) {
+    ws[`A${i}`].s = { alignment: {
+      wrapText: true,
+    },}
+    ws[`B${i}`].s = { alignment: {
+      wrapText: true,
     },
-  });
+  }
+  }
+  XLSX.utils.sheet_add_aoa(ws, [["Field Name", "Value"]], { origin: "A1" });
+  ws['!cols'] = [{wch: 18},{wch: 38}]
+  ws['A1'].s ={font: {bold: true,
+    color: {
+      rgb: "ff73bf45"
+    }}}
+    ws['B1'].s ={font: {bold: true,
+      color: {
+        rgb: "ff73bf45"
+      }}}
+  
+  const wb = { Sheets: { 'data': ws}, SheetNames: ['data']};
+  const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array'});
+  const doc = new Blob([excelBuffer], {type: fileType});
+  return doc;
 }
+
+const downloadFile = ({ data, fileName, fileType }) => {
+  const blob = new Blob([data], { type: fileType });
+
+  const a = document.createElement("a");
+  a.download = fileName;
+  a.href = window.URL.createObjectURL(blob);
+  const clickEvt = new MouseEvent("click", {
+    view: window,
+    bubbles: true,
+    cancelable: true,
+  });
+  a.dispatchEvent(clickEvt);
+  a.remove();
+};
+export const exportToText = (data) => {
+  // e.preventDefault();
+  downloadFile({
+    data: JSON.stringify(data),
+    fileName: "data.txt",
+    fileType: "text/plain;charset=utf-8",
+  });
+};
+export const exportToJson = (data) => {
+  // e.preventDefault();
+  downloadFile({
+    data: JSON.stringify(data),
+    fileName: "data.json",
+    fileType: "text/json",
+  });
+};

@@ -2,7 +2,7 @@ import "../../../../src/styles/App.css";
 import Stepper from "react-stepper-horizontal/lib/Stepper";
 
 const UplaodingDocView = (props) => {
-  const { steps, activeStep, onClickNext, errorMessage } = props;
+  const { steps, activeStep, onClickNext, errorMessage, onClickBack } = props;
 
   return (
     <div className="box-container">
@@ -20,12 +20,21 @@ const UplaodingDocView = (props) => {
       <div className="error-section">
         <small>{errorMessage}</small>
       </div>
-     <button
-        className="btn btn-primary btn-next"
+      <div className="btn-container">
+      <button
+        className="btn btn-primary btn-next1"
         onClick={() => onClickNext()}
       >
         Next
       </button>
+      {console.log(activeStep)}
+      {activeStep !== 0 && <button
+        className="btn btn-primary btn-next"
+        onClick={() => onClickBack()}
+      >
+        BecK
+      </button>}
+      </div>
     </div>
   );
 };

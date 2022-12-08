@@ -12,11 +12,12 @@ export default function index({ setIsLoggedIn }) {
       <div>
         <img src={logo} alt="logo" />
       </div>
-      <div className="logout-container">
+      <button className="logout-container" onClick={() => handleLogout()}>
+        Logout
         <label onClick={() => handleLogout()} title="Logout">
-          <i className="fa fa-sign-out" aria-hidden="true"></i>
-        </label>
-      </div>
+          <i className="fa fa-sign-out" aria-hidden="true"></i> 
+          </label>     
+      </button>
     </div>
   );
 }

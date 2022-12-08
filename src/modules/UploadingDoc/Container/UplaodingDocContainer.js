@@ -61,6 +61,9 @@ const UplaodingDocContainer = ({ setIsLoggedIn }) => {
       },
     },
   ];
+  const onClickBack = () => {
+    setActiveStep(activeStep - 1);
+  }
   const onClickNext = () => {
     // setActiveStep(activeStep + 1);
     if (activeStep > 2) {
@@ -97,6 +100,7 @@ const UplaodingDocContainer = ({ setIsLoggedIn }) => {
         activeStep={activeStep}
         onClickNext={onClickNext}
         errorMessage={errorMessage}
+        onClickBack={onClickBack}
       ></UplaodingDocView>
     </>
   );

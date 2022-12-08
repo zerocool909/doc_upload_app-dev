@@ -3,7 +3,17 @@ import { useEffect, useState } from "react";
 import { PdfViewer } from "./PdfViewer";
 import axios from "axios";
 import { Spinner } from "react-bootstrap";
-import { handleDownloadExcel, pdfConvert } from "./utill";
+import {
+  excelConvert,
+  exportToCsv,
+  exportToJson,
+  exportToText,
+  handleDownloadExcel,
+  pdfConvert,
+} from "./utill";
+import * as FileSaver from "file-saver";
+import { saveAs } from "file-saver";
+import { CSVLink } from "react-csv";
 
 const CheckResults = ({ selectedInfo }) => {
   const [fieldValue, setFieldValue] = useState("");
@@ -37,12 +47,13 @@ const CheckResults = ({ selectedInfo }) => {
             tempArray.push(tempObj);
           }
         }
-        console.log('tt', tempArray);
-        if(selectedInfo.data_points === 'All data points'){
-        setInfo(tempArray);
-        }
-        else{
-          let res = tempArray.filter(n => selectedInfo.customDataArray.some(n2 => n.name === n2.name));
+        console.log("tt", tempArray);
+        if (selectedInfo.data_points === "All data points") {
+          setInfo(tempArray);
+        } else {
+          let res = tempArray.filter((n) =>
+            selectedInfo.customDataArray.some((n2) => n.name === n2.name)
+          );
           setInfo(res);
         }
         setWatingLoader(false);
@@ -98,7 +109,6 @@ const CheckResults = ({ selectedInfo }) => {
   };
 
   const onExportDataPdf = () => {
-    console.log("eeee");
     let arr = [];
     for (const element of info) {
       arr.push([element.name, element.value]);
@@ -108,19 +118,30 @@ const CheckResults = ({ selectedInfo }) => {
   };
 
   const onExportDataExcel = () => {
-    let arr = [];
-    for (const element of info) {
-      arr.push([element.name, element.value]);
-    }
-    console.log(arr);
-    setExcelData(arr);
-    handleDownloadExcel(arr);
+    saveAs(excelConvert(info), "exceldata" + ".xlsx");
+  };
+  const headers = [
+    { label: "Field Name", key: "name" },
+    { label: "Value", key: "value" },
+  ];
+  const csvReport = {
+    data: info,
+    headers: headers,
+    filename: "Data_Report.csv",
+  };
+
+  const onExportDataJSON = () => {
+    exportToJson(info);
+  };
+
+  const onExportDataText = () => {
+    const str = info.map((a) => `${Object.values(a).join(": ")}\n`).join("");
+    var blob = new Blob([str], { type: "text/plain;charset=utf-8" });
+    saveAs(blob, "testfile1.txt");
   };
 
   useEffect(() => {
     apiCalling();
-    console.log('a', selectedInfo.customDataArray);
-    console.log('k', selectedInfo.data_points);
   }, []);
 
   return (
@@ -206,6 +227,23 @@ const CheckResults = ({ selectedInfo }) => {
                 >
                   Export Data to excel
                 </button>
+                <button
+                  className="btn btn-common"
+                  variant="secondary"
+                  onClick={onExportDataJSON}
+                >
+                  Export Data to JSON
+                </button>
+                <button
+                  className="btn btn-common"
+                  variant="secondary"
+                  onClick={onExportDataText}
+                >
+                  Export Data to Text File
+                </button>
+                <CSVLink className="btn btn-common" {...csvReport}>
+                  Export to CSV
+                </CSVLink>
               </div>
             </div>
           </div>
