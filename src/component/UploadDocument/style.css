@@ -6,10 +6,16 @@
 }
 .upload-document-container {
     text-align: center;
-    padding: 20px;
+    padding: 2px;
     border: 2px #73bf45 dashed;
     background: #73bf452e;
     margin-bottom: 10px;
+}
+.upload-document-container div{
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center
 }
 .uploaded-container ul li {
     font-size: 14px;
