@@ -7,7 +7,7 @@
 .upload-document-container {
     text-align: center;
     padding: 2px;
-    border: 2px #73bf45 dashed;
+    /* border: 2px #73bf45 dashed; */
     background: #73bf452e;
     margin-bottom: 10px;
 }

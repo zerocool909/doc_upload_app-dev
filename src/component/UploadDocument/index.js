@@ -1,10 +1,36 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useMemo } from "react";
 import { useDropzone } from "react-dropzone";
 import { PDFPreview } from "./PDFPreview/PDFPreview";
 import "./style.css";
 import { Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
+const baseStyle = {
+  flex: 1,
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  padding: '20px',
+  borderWidth: 3,
+  borderRadius: 2,
+  borderColor: '#9cd17a',
+  borderStyle: 'dashed',
+  // backgroundColor: '#73bf452e',
+  color: '#73bf45',
+  outline: 'none',
+  transition: 'border .24s ease-in-out'
+};
 
+const focusedStyle = {
+  borderColor: '#5a9834'
+};
+
+const acceptStyle = {
+  borderColor: '#71be41'
+};
+
+const rejectStyle = {
+  borderColor: '#ff1744'
+};
 const UploadDocument = ({ selectedInfo, setSelectedInfo, setErrorMessage }) => {
   const [uploadedFile, setUploadedFile] = useState([]);
   const [show, setShow] = useState(false);
@@ -36,13 +62,26 @@ const UploadDocument = ({ selectedInfo, setSelectedInfo, setErrorMessage }) => {
     }
   }, []);
 
-  const { getRootProps, getInputProps } = useDropzone({
+  const { getRootProps, getInputProps, isFocused,
+    isDragAccept,
+    isDragReject } = useDropzone({
     accept: {
       // "image/*": [],
       "application/pdf": [".pdf"],
     },
     onDrop,
   });
+
+  const style = useMemo(() => ({
+    ...baseStyle,
+    ...(isFocused ? focusedStyle : {}),
+    ...(isDragAccept ? acceptStyle : {}),
+    ...(isDragReject ? rejectStyle : {})
+  }), [
+    isFocused,
+    isDragAccept,
+    isDragReject
+  ]);
 
   const files = uploadedFile.map((file) => {
     return (
@@ -80,7 +119,7 @@ const UploadDocument = ({ selectedInfo, setSelectedInfo, setErrorMessage }) => {
       <div className="document-type-container">
         <section className="">
           <div className="upload-document-container">
-            <div {...getRootProps({ className: "dropzone" })}>
+            <div {...getRootProps({style})}>
               <input {...getInputProps()} />
               <p>Drag 'n' drop some files here, or click to select files</p>
             </div>
