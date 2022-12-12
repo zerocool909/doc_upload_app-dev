@@ -21,11 +21,11 @@ const baseStyle = {
 };
 
 const focusedStyle = {
-  borderColor: '#5a9834'
+  borderColor: '#66ab3b'
 };
 
 const acceptStyle = {
-  borderColor: '#71be41'
+  borderColor: '#66ab3b'
 };
 
 const rejectStyle = {
