@@ -70,6 +70,7 @@ const UploadDocument = ({ selectedInfo, setSelectedInfo, setErrorMessage }) => {
       "application/pdf": [".pdf"],
     },
     onDrop,
+    multiple: false,
   });
 
   const style = useMemo(() => ({

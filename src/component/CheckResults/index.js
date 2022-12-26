@@ -3,22 +3,37 @@ import { useEffect, useState } from "react";
 import { PdfViewer } from "./PdfViewer";
 import axios from "axios";
 import { Spinner } from "react-bootstrap";
-import {
-  excelConvert,
-  exportToJson,
-  pdfConvert,
-} from "./utill";
+import { excelConvert, exportToJson, pdfConvert } from "./utill";
 import { saveAs } from "file-saver";
 import { CSVLink } from "react-csv";
+import { BlobServiceClient } from "@azure/storage-blob";
+import {
+  containerName,
+  isStorageConfigured,
+  sasToken,
+} from "../UploadDocument/util";
+
+const storageConfigured = isStorageConfigured();
 
 const CheckResults = ({ selectedInfo }) => {
   const [fieldValue, setFieldValue] = useState("");
   const [info, setInfo] = useState([]);
   const [waitingLoader, setWatingLoader] = useState(true);
   const baseURL =
-    "https://contractsdataextractionv1.azurewebsites.net/api/contract_extraction_function";
+    "https://fuctions-api.azurewebsites.net/api/as_is_document_extractor_dev_api?";
+  // "https://contractsdataextractionv1.azurewebsites.net/api/contract_extraction_function";
 
-  const apiCalling = async () => {
+
+  useEffect(() => {
+    console.log("storageConfigured", storageConfigured);
+    if (storageConfigured) {
+      uploadFileToBlob(selectedInfo.uploaded_file[0]);
+    }
+  }, []);
+
+
+  const apiCalling = async (fileURL) => {
+    console.log("fileUrl", fileURL);
     axios({
       url: baseURL,
       method: "POST",
@@ -27,7 +42,8 @@ const CheckResults = ({ selectedInfo }) => {
         "User-Agent": "Thunder Client (https://www.thunderclient.com)",
         "Content-Type": "application/json",
       },
-      data: { name: selectedInfo.uploaded_file[0].name },
+      // data: { name: selectedInfo.uploaded_file[0].name },
+      data: {"fileURL" : fileURL}
     })
       .then((res) => {
         console.log("data", res);
@@ -141,11 +157,41 @@ const CheckResults = ({ selectedInfo }) => {
     let blob = new Blob([str], { type: "text/plain;charset=utf-8" });
     saveAs(blob, "testfile1.txt");
   };
-  
-  useEffect(() => {
-    apiCalling();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+
+  // azure file uploading
+
+  // <snippet_uploadFileToBlob>
+  const uploadFileToBlob = async (file) => {
+    if (!file) return [];
+    console.log("file", file);
+    // get BlobService = notice `?` is pulled out of sasToken - if created in Azure portal
+    const blobService = new BlobServiceClient(
+      `https://rg01deva5c0.blob.core.windows.net/?${sasToken}`
+    );
+    // `https://rg01deva5c0.blob.core.windows.net/?${sasToken}`
+    // get Container - full public read access
+    const containerClient = blobService.getContainerClient(containerName);
+    await containerClient.createIfNotExists({
+      access: "container",
+    });
+
+    // upload file
+
+    const blobClient = containerClient.getBlockBlobClient(file.name);
+
+    // set mimetype as determined from browser with file upload control
+    const options = { blobHTTPHeaders: { blobContentType: file.type } };
+
+    // upload file
+    await blobClient
+      .uploadData(file, options)
+      .then((res) => {
+        console.log("Done=>>>", res._response.request.url);
+        apiCalling(res._response.request.url);
+      })
+      .catch((ex) => console.log("error", ex.message));
+  };
+  // </snippet_uploadFileToBlob>
 
   return (
     <div className="check-result-container">
@@ -156,7 +202,7 @@ const CheckResults = ({ selectedInfo }) => {
         <div className="wating-container">
           {/* <img className="waiting-img" src={waiting} alt="loading..." /> */}
           <Spinner animation="border" />
-          Please Wait... Your file(s) are being processed......
+          Please Wait.... Your file(s) are being processed......
         </div>
       ) : (
         <div className="row ">
