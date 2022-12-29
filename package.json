@@ -4,6 +4,8 @@
   "main": "index.js",
   "private": true,
   "dependencies": {
+    "@azure/msal-browser": "^2.32.1",
+    "@azure/msal-react": "^1.5.1",
     "@azure/storage-blob": "^12.12.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",

@@ -1,11 +1,15 @@
 import React from "react";
 import "./style.css";
 import logo from "../../images/boare_ai-logo_white.jpg";
+import { useMsal } from "@azure/msal-react";
 
-export default function index({ setIsLoggedIn }) {
+
+  const Header = ({ setIsLoggedIn }) => {
+  const { instance } = useMsal();
   const handleLogout = () => {
-    localStorage.removeItem("isLogin");
-    setIsLoggedIn(false);
+    instance.logoutRedirect({
+      postLogoutRedirectUri: "/",
+  });
   };
   return (
     <div className="header">
@@ -21,3 +25,4 @@ export default function index({ setIsLoggedIn }) {
     </div>
   );
 }
+ export default Header;

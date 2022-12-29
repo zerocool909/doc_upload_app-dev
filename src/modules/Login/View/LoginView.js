@@ -1,12 +1,18 @@
 import React from "react";
 import "./style.css";
 import logo from "../../../images/boare_ai-logo_white.jpg";
+import { useMsal } from "@azure/msal-react";
+import { loginRequest } from "../../../authConfig";
 
 const LoginView = ({ setIsLoggedIn }) => {
+  const { instance } = useMsal();
   const handleLogin = () => {
-    localStorage.setItem("isLogin", "Yes");
-    localStorage.setItem("donotShow", "No");
-    setIsLoggedIn(true);
+    // localStorage.setItem("isLogin", "Yes");
+    // localStorage.setItem("donotShow", "No");
+    // setIsLoggedIn(true);
+    instance.loginRedirect(loginRequest).catch(e => {
+      console.log('e',e);
+  });
   };
   return (
     <div className="row">
@@ -59,7 +65,7 @@ const LoginView = ({ setIsLoggedIn }) => {
       </div>
       <div className="col-md-6 login-left-border">
         <div className="login-container-left">
-          <span>* Indicates a required field</span>
+          {/* <span>* Indicates a required field</span>
           <div>
             <label className="heading-common">Email Address *</label>
             <input type="text" className="form-control" />
@@ -67,13 +73,13 @@ const LoginView = ({ setIsLoggedIn }) => {
           <div>
             <label className="heading-common">Password *</label>
             <input type="password" className="form-control" />
-          </div>
+          </div> */}
           <div className="button-section">
             <button
               className="btn btn-primary btn-login"
               onClick={() => handleLogin()}
             >
-              Login
+              Please sign-in to continue.
             </button>
           </div>
         </div>

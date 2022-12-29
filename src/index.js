@@ -6,17 +6,25 @@
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import "font-awesome/css/font-awesome.min.css";
 
+const { PublicClientApplication } = require("@azure/msal-browser");
+const { MsalProvider } = require("@azure/msal-react");
 const React = require("react");
 const ReactDOM = require("react-dom/client");
 const {App} = require("./App");
+const { msalConfig } = require("./authConfig");
 const reportWebVitals = require("./reportWebVitals")
 const root = ReactDOM.createRoot(document.getElementById("root"));
 require("../src/styles/index.css");
 require("bootstrap/dist/css/bootstrap.min.css");
 require("font-awesome/css/font-awesome.min.css");
+
+const msalInstance = new PublicClientApplication(msalConfig);
+
 root.render(
   // <React.StrictMode>
-    <App />
+  <MsalProvider instance={msalInstance}>
+  <App />
+</MsalProvider>
   // </React.StrictMode>
 );
 

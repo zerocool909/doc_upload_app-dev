@@ -11,7 +11,9 @@
 }
 
 .login-container-left{
-    padding: 15px
+    padding: 15px;
+    width: -webkit-fill-available;
+    margin-bottom: 40px;
 }
 .login-container-right {
     padding: 15px
@@ -42,6 +44,9 @@
 }
 .login-left-border{
     border-left: 2px solid #d2dadd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .heading-section{
     text-align: center;
