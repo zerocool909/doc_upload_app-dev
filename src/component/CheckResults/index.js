@@ -19,8 +19,8 @@ const CheckResults = ({ selectedInfo }) => {
   const [fieldValue, setFieldValue] = useState("");
   const [info, setInfo] = useState([]);
   const [waitingLoader, setWatingLoader] = useState(true);
-  const baseURL =
-    "https://fuctions-api.azurewebsites.net/api/as_is_document_extractor_dev_api?";
+  const baseURL = "https://fa-contract-as-is-dev.azurewebsites.net/api/api_as_is_contract_dev?"
+  // "https://fuctions-api.azurewebsites.net/api/as_is_document_extractor_dev_api?";
   // "https://contractsdataextractionv1.azurewebsites.net/api/contract_extraction_function";
 
 
